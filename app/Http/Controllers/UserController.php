@@ -73,15 +73,15 @@ class UserController extends Controller
         ]);
 
 
-      
+
 
         User::create([
             'name' => $request->input('name'),
             'username' => $request->input('username'),
             'email' => $request->input('email'),
-            
+
             'password' => bcrypt(($request->input('password')))
-         
+
         ]);
 
         Session::flash('message', 'Berhasil ditambahkan!');
@@ -115,7 +115,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         if((Auth::user()->level == 'admin') && (Auth::user()->id != $id)) {
                 Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
                 return redirect()->to('/');
@@ -137,17 +137,17 @@ class UserController extends Controller
     {
         $user_data = User::findOrFail($id);
 
-       
+
 
         $user_data->name = $request->input('name');
         $user_data->email = $request->input('email');
         if($request->input('password')) {
-       
+
         }
 
         if($request->input('password')) {
             $user_data->password= bcrypt(($request->input('password')));
-        
+
         }
 
         $user_data->update();

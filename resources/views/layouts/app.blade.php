@@ -3,21 +3,22 @@
 
 <head>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>OXY</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="{{asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
-  <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.addons.css')}}">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="{{asset('css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('css/select2.css')}}">
-  <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css')}}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Klambi Ananta</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.addons.css')}}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/select2.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css')}}">
   @section('css')
 
   @show
@@ -30,7 +31,7 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index.html" style="color: #2d2d2d">
-          OXY
+          Klambi Ananta
         </a>
            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>
@@ -40,7 +41,7 @@
 
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-right">
-         
+
           <li class="nav-item dropdown d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello Logout Here</span><i class='fas'>&#xf2f5;</i>
@@ -48,10 +49,10 @@
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <a class="dropdown-item p-0">
                 <div class="d-flex border-bottom">
-                 
+
                 </div>
               </a>
-              
+
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                  Sign Out
@@ -65,11 +66,11 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-             
+
             </div>
           </li>
         </ul>
-     
+
       </div>
     </nav>
     <!-- partial -->
@@ -88,7 +89,7 @@
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{date('Y')}}
-            <a href="https://gilacoding.com/" target="_blank">Gilacoding</a>. All rights reserved.</span>
+            By  <span style="color:blue"> Ahmad Diyaz Al-Bustomi. </span> All rights reserved.</span>
           </div>
         </footer>
         <!-- partial -->
@@ -98,20 +99,18 @@
     <!-- page-body-wrapper ends -->
   </div>
   <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
-  <script src="{{asset('vendors/js/vendor.bundle.addons.js')}}"></script>
-  <script src="{{asset('js/off-canvas.js')}}"></script>
-  <script src="{{asset('js/misc.js')}}"></script>
-  <script src="{{asset('js/dashboard.js')}}"></script>
-  <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{asset('js/sweetalert2.all.js')}}"></script>
-  <script src="{{asset('js/select2.min.js')}}"></script>
-  @include('sweetalert::alert')
-  @section('js')
-
+    <script src="{{asset('vendors/js/vendor.bundle.addons.js')}}"></script>
+    <script src="{{asset('js/off-canvas.js')}}"></script>
+    <script src="{{asset('js/misc.js')}}"></script>
+    <script src="{{asset('js/dashboard.js')}}"></script>
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('js/sweetalert2.all.js')}}"></script>
+    <script src="{{asset('js/select2.min.js')}}"></script>
+    @include('sweetalert::alert')
+    @section('js')
   @show
 </body>
 
 </html>
-                         
-   
+

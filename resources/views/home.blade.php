@@ -1,178 +1,247 @@
-@section('js')
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#table').DataTable({
-      "iDisplayLength": 50
-    });
+<!DOCTYPE html>
+<html lang="zxx">
 
-} );
-</script>
-@stop
-@extends('layouts.app')
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Klambi Ananta</title>
 
-@section('content')
-<div class="row">
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-            <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-poll-box text-danger icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Transaksi</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">{{$transaksi->count()}}</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total seluruh transaksi
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-receipt text-warning icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Sedang Pinjam</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">{{$transaksi->where('status', 'pinjam')->count()}}</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> sedang dipinjam
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-book text-success icon-lg" style="width: 40px;height: 40px;"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Buku</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">{{$buku->count()}}</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-book mr-1" aria-hidden="true"></i> Total judul buku
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-account-location text-info icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Anggota</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">{{$user->count()}}</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-account mr-1" aria-hidden="true"></i> Total seluruh anggota
-                  </p>
-                </div>
-              </div>
-            </div>
-</div>
-<div class="row" >
-<div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
-                <div class="card-body">
-                  <h4 class="card-title">Data Transaksi sedang pinjam</h4>
-                  
-                  <div class="table-responsive">
-                    <table class="table table-striped" id="table">
-                      <thead>
-                        <tr>
-                          <th>
-                            Kode
-                          </th>
-                          <th>
-                            Buku
-                          </th>
-                          <th>
-                            Peminjam
-                          </th>
-                          <th>
-                            Tgl Pinjam
-                          </th>
-                          <th>
-                            Tgl Kembali
-                          </th>
-                          <th>
-                            Status
-                          </th>
-                          <th>
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($datas as $data)
-                        <tr>
-                          <td class="py-1">
-                          <a href="{{route('transaksi.show', $data->id)}}"> 
-                            {{$data->kode_transaksi}}
-                          </a>
-                          </td>
-                          <td>
-                          
-                            {{$data->buku->judul}}
-                          
-                          </td>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../ananta/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../ananta/css/style.css" type="text/css">
+</head>
 
-                          <td>
-                            {{$data->user->name}}
-                          </td>
-                          <td>
-                           {{date('d/m/y', strtotime($data->tgl_pinjam))}}
-                          </td>
-                          <td>
-                            {{date('d/m/y', strtotime($data->tgl_kembali))}}
-                          </td>
-                          <td>
-                          @if($data->status == 'pinjam')
-                            <label class="badge badge-warning">Pinjam</label>
-                          @else
-                            <label class="badge badge-success">Kembali</label>
-                          @endif
-                          </td>
-                          <td>
-                          <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
-                            <button class="btn btn-info btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')">Sudah Kembali
-                            </button>
-                          </form>
-                          
-                          </td>
-                        </tr>
-                      @endforeach
-                      </tbody>
-                    </table>
-                  </div>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    @include('layouts.menu')
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    @foreach($baju as $datas)
+    @endforeach
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="{{url('images/baju/gambar1/'. $datas->gambar1)}}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h2>{{$datas->nama}}</h2>
+                                <h2>{{$datas->harga}}</h2>
+                                <p>{{$datas->isi}}</p>
+                                <a href="{{url('bajuLengkap/'. $datas->id)}}" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                                <div class="hero__social">
+                                    <a href="https://api.whatsapp.com/send?phone=6281928222022&text=Nama Baju = {{$datas->nama}}, {{url('bajuLengkap/'. $datas->id)}}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                    <a href="https://shopee.co.id/klambi.ananta"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                    <a href="https://www.instagram.com/klambi.ananta/"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-@endsection
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Latest Product</span>
+                        <h2>Fashion New Trends</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        @foreach($bajuAll as $y)
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{url('images/baju/gambar1/'. $y->gambar1)}}">
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>{{$y->nama}}</h6>
+                                    <a href="{{url('bajuLengkap/'. $y->id)}}" class="add-cart">{{$y->nama}}</a>
+                                    <h5> Rp. {{number_format ($y->harga)}}</h5>
+                                </div>
+                                <div class="hero__social" style="margin-top: 38px;">
+                                    <a href="https://api.whatsapp.com/send?phone=6281928222022&text=Nama Baju = {{$datas->nama}}, {{url('bajuLengkap/'. $datas->id)}}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                    <a href ="https://shopee.co.id/klambi.ananta"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                    <a href="https://www.instagram.com/klambi.ananta/"><i class="fa fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">Best Sellers</li>
+                        <li data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row product__filter">
+                @foreach ($murah as $mura)
+                @php
+                $diskon = $mura->harga * $mura->diskon/ 100;
+                $total = $mura->harga - $diskon;
+                @endphp
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{{url('images/baju/gambar1/'. $mura->gambar1)}}">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>{{$mura->nama}}</h6>
+                            <a href="{{url('bajuLengkap', $mura->id)}}" class="add-cart">{{$mura->nama}}</a>
+                            <h5> Rp. {{number_format ($mura->harga)}}</h5>
+                        </div>
+                        <div class="hero__social" style="margin-top: 38px;">
+                            <a href="https://api.whatsapp.com/send?phone=6281928222022&text=Nama Baju = {{$datas->nama}}, {{url('bajuLengkap/'. $datas->id)}}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <a href="https://shopee.co.id/klambi.ananta"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/klambi.ananta/"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @foreach ($bajuAll as $all)
+                @php
+                $diskon = $all->harga * $all->diskon/ 100;
+                $total = $all->harga - $diskon;
+                @endphp
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        @if($all->diskon)
+                        <div class="hot__deal__sticker">
+                            <span>Sale Of</span>
+                            <h5>{{$all->diskon}}</h5>
+                        </div>
+                        @endif
+                        <div class="product__item__pic set-bg" data-setbg="{{url('images/baju/gambar1/'. $all->gambar1)}}">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>{{$all->nama}}</h6>
+                            <a href="{{url('bajuLengkap/'. $all->id)}}" class="add-cart">{{$all->nama}}</a>
+                            @if($all->diskon)
+                            <s>Rp. {{number_format ($all->harga)}}</s>
+                            <h5> Rp. {{number_format ($total)}}</h5>
+                            @else
+                            <h5> Rp. {{number_format ($all->harga)}}</h5>
+                            @endif
+                        </div>
+                        <div class="hero__social" style="margin-top: 38px;">
+                            <a href="https://api.whatsapp.com/send?phone=6281928222022&text=Nama Baju = {{$datas->nama}}, {{url('bajuLengkap/'. $datas->id)}}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <a href="https://shopee.co.id/klambi.ananta"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/klambi.ananta/"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="{{url('/')}}"><img src="../images/market/klambi.jpg" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer__widget">
+                        <h6>Follow Us</h6>
+                        <ul>
+                            <li><a href="https://www.instagram.com/klambi.ananta/">Instagram</a></li>
+                            <li><a href="https://shopee.co.id/klambi.ananta">Shopee</a></li>
+                            <li><a href="https://api.whatsapp.com/send?phone=6281928222022&text=Hallo admin Klambi Ananta, saya ingin menanyakan seputar product Klambi Ananta">Whatsapp</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="https://api.whatsapp.com/send?phone=6281928222022&text=Hallo admin Klambi Ananta, saya ingin menanyakan seputar product Klambi Ananta" target="_blank">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="../ananta/js/jquery-3.3.1.min.js"></script>
+    <script src="../ananta/js/bootstrap.min.js"></script>
+    <script src="../ananta/js/jquery.nice-select.min.js"></script>
+    <script src="../ananta/js/jquery.nicescroll.min.js"></script>
+    <script src="../ananta/js/jquery.magnific-popup.min.js"></script>
+    <script src="../ananta/js/jquery.countdown.min.js"></script>
+    <script src="../ananta/js/jquery.slicknav.js"></script>
+    <script src="../ananta/js/mixitup.min.js"></script>
+    <script src="../ananta/js/owl.carousel.min.js"></script>
+    <script src="../ananta/js/main.js"></script>
+</body>
+
+</html>

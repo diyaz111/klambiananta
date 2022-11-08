@@ -78,14 +78,14 @@
                           @else
                             <img src="{{url('images/buku/default.png')}}" alt="image" style="margin-right: 10px;" />
                           @endif
-                          <a href="{{route('buku.show', $data->id)}}"> 
+                          <a href="{{route('buku.show', $data->id)}}">
                             {{$data->judul}}
                           </a>
                           </td>
                           <td>
-                          
+
                             {{$data->isbn}}
-                          
+
                           </td>
 
                           <td>
@@ -113,7 +113,7 @@
                             <button class="dropdown-item" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> Delete
                             </button>
                           </form>
-                           
+
                           </div>
                         </div>
                           </td>

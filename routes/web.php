@@ -1,14 +1,18 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\BajuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\BajuLengkapController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,25 +26,15 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
 
+Route::get('/bajuLengkap/{id}', [BajuLengkapController::class, 'index']);
 
 Auth::routes();
 
+Route::get('/admin', [BajuController::class, 'index'])->middleware('auth');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::middleware('role:admin')->get('/buku', function() {
-    return view ('buku/index');
-})->name('buku');
-
-Route::resource('/buku', BukuController::class)->middleware('role:admin');
+Route::resource('/baju',BajuController::class)->middleware('auth');
 Route::resource('/roles', RoleController::class)->middleware('role:admin');
-Route::resource('/transaksi', TransaksiController::class)->middleware('role:anggota');
-Route::get('/lihat', [BukuController::class, 'lihat'])->middleware('auth');
 
-Route::get('/laporan/trs', [LaporanController::class, 'transaksi']);
-Route::get('/laporan/trs/pdf', [LaporanController::class, 'transaksiPdf']);
-Route::get('/laporan/trs/excel', [LaporanController::class, 'transaksiExcel']);
-
-Route::get('/laporan/buku', [LaporanController::class, 'buku']);
-Route::get('/laporan/buku/pdf', [LaporanController::class, 'bukuPdf']);
-Route::get('/laporan/buku/excel', [LaporanController::class, 'bukuExcel']);
